@@ -3,7 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MapPin, ShoppingBag, Clock } from "lucide-react";
+import { MapPin, ShoppingBag, Clock, Sparkles, Tag, Truck, CreditCard } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
 const HomePage = () => {
   const [pincode, setPincode] = useState("");
@@ -60,6 +62,71 @@ const HomePage = () => {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Special Offers Section */}
+      <section className="py-10 mb-10">
+        <div className="text-center mb-10 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            <span className="text-pick-orange">Special</span> Offers & 
+            <span className="text-pick-green"> Rewards</span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Discover amazing deals and earn rewards when you shop with Pick-n-Pay
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
+          <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-2 border-pick-orange/30 hover-lift bg-gradient-to-br from-orange-50 to-white dark:from-gray-800 dark:to-gray-900">
+            <div className="p-6 relative">
+              <Badge className="absolute top-3 right-3 bg-pick-orange hover:bg-pick-orange-dark">Limited Time</Badge>
+              <div className="h-14 w-14 bg-pick-orange/20 rounded-full flex items-center justify-center mb-4">
+                <Tag className="h-8 w-8 text-pick-orange" />
+              </div>
+              <h3 className="text-2xl font-display font-bold mb-2">First Order 20% Off</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                New to Pick-n-Pay? Get 20% off your first order with code <span className="font-semibold">WELCOME20</span>
+              </p>
+              <div className="flex justify-between items-center">
+                <div className="text-sm font-medium text-pick-orange">Valid until 31 Dec 2025</div>
+                <Sparkles className="h-5 w-5 text-pick-orange" />
+              </div>
+            </div>
+          </Card>
+
+          <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-2 border-pick-green/30 hover-lift bg-gradient-to-br from-green-50 to-white dark:from-gray-800 dark:to-gray-900">
+            <div className="p-6 relative">
+              <div className="h-14 w-14 bg-pick-green/20 rounded-full flex items-center justify-center mb-4">
+                <CreditCard className="h-8 w-8 text-pick-green" />
+              </div>
+              <h3 className="text-2xl font-display font-bold mb-2">Reward Tokens</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Earn 1 token for every $10 spent. Redeem 10 tokens for $5 off your next order.
+              </p>
+              <div className="flex justify-between items-center">
+                <div className="text-sm font-medium text-pick-green">Collect & Save</div>
+                <Sparkles className="h-5 w-5 text-pick-green" />
+              </div>
+            </div>
+          </Card>
+
+          <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-2 border-pick-purple/30 hover-lift bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900">
+            <div className="p-6 relative">
+              <Badge className="absolute top-3 right-3 bg-pick-purple hover:bg-pick-purple-dark">New</Badge>
+              <div className="h-14 w-14 bg-pick-purple/20 rounded-full flex items-center justify-center mb-4">
+                <Truck className="h-8 w-8 text-pick-purple" />
+              </div>
+              <h3 className="text-2xl font-display font-bold mb-2">Free Delivery</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Get free delivery on orders over $50 from participating shops with delivery service.
+              </p>
+              <div className="flex justify-between items-center">
+                <div className="text-sm font-medium text-pick-purple">Select Shops Only</div>
+                <Sparkles className="h-5 w-5 text-pick-purple" />
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
       

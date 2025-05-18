@@ -9,11 +9,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useCart } from "../contexts/CartContext";
 import { paymentMethods } from "../data/mockData";
-import { MapPin, CreditCard, Check, ArrowLeft } from "lucide-react";
+import { MapPin, CreditCard, Check, ArrowLeft, Truck, Package, Store } from "lucide-react";
 import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
 
 const CheckoutPage = () => {
-  const { items, shop, getTotalPrice, clearCart } = useCart();
+  const { items, shop, getTotalPrice, clearCart, isDelivery, setIsDelivery, getDeliveryCharge } = useCart();
   const navigate = useNavigate();
   
   const [customerInfo, setCustomerInfo] = useState({
@@ -30,6 +31,10 @@ const CheckoutPage = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCustomerInfo((prev) => ({ ...prev, [name]: value }));
+  };
+  
+  const handleDeliveryMethodChange = (value: string) => {
+    setIsDelivery(value === "delivery");
   };
   
   const handleSubmit = (e: React.FormEvent) => {
@@ -55,9 +60,25 @@ const CheckoutPage = () => {
     navigate("/");
     return null;
   }
+  
+  const totalPrice = getTotalPrice();
+  const deliveryCharge = getDeliveryCharge();
+  const finalTotal = totalPrice + deliveryCharge;
 
   return (
     <div className="container px-4 md:px-6 mx-auto py-8 animate-fade-in">
+      {shop && (
+        <div className="mb-6 p-4 bg-gradient-to-r from-pick-green/10 to-pick-orange/10 rounded-lg">
+          <div className="flex items-center">
+            <Store className="h-5 w-5 text-pick-green mr-2" />
+            <h2 className="text-xl font-display font-bold">
+              Ordering from: {shop.name}
+            </h2>
+            <Badge className="ml-2 capitalize">{shop.type}</Badge>
+          </div>
+        </div>
+      )}
+      
       <div className="flex items-center mb-6">
         <Button 
           variant="ghost" 
@@ -121,8 +142,41 @@ const CheckoutPage = () => {
                 
                 <Separator className="my-6" />
                 
+                {!shop?.selfPickupOnly && (
+                  <div className="mb-6">
+                    <h2 className="text-xl font-display font-semibold mb-4">Delivery Method</h2>
+                    <RadioGroup 
+                      value={isDelivery ? "delivery" : "pickup"} 
+                      onValueChange={handleDeliveryMethodChange}
+                      className="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-6"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="pickup" id="pickup" />
+                        <Label 
+                          htmlFor="pickup"
+                          className="flex items-center cursor-pointer py-2"
+                        >
+                          <Package className="h-4 w-4 mr-2" />
+                          Self Pickup (Free)
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="delivery" id="delivery" />
+                        <Label 
+                          htmlFor="delivery"
+                          className="flex items-center cursor-pointer py-2"
+                        >
+                          <Truck className="h-4 w-4 mr-2" />
+                          Home Delivery (${shop?.deliveryCharge?.toFixed(2)})
+                        </Label>
+                      </div>
+                    </RadioGroup>
+                    <Separator className="my-6" />
+                  </div>
+                )}
+                
                 <div className="mb-6">
-                  <h2 className="text-xl font-display font-semibold mb-4">Pickup Information</h2>
+                  <h2 className="text-xl font-display font-semibold mb-4">{isDelivery ? "Delivery" : "Pickup"} Information</h2>
                   <div>
                     <Label htmlFor="address">Address *</Label>
                     <Input
@@ -149,10 +203,21 @@ const CheckoutPage = () => {
                   </div>
                   
                   <div className="mt-4 flex items-start">
-                    <MapPin className="h-5 w-5 text-pick-green mt-0.5 mr-2 shrink-0" />
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      You'll need to visit <strong>{shop?.name}</strong> to collect your order. Self-pickup only.
-                    </p>
+                    {isDelivery ? (
+                      <>
+                        <Truck className="h-5 w-5 text-pick-green mt-0.5 mr-2 shrink-0" />
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          Your order will be delivered to your address. Delivery charge of ${deliveryCharge.toFixed(2)} will be added to your total.
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <MapPin className="h-5 w-5 text-pick-green mt-0.5 mr-2 shrink-0" />
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          You'll need to visit <strong>{shop?.name}</strong> to collect your order.
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
                 
@@ -183,7 +248,7 @@ const CheckoutPage = () => {
                       <div className="flex items-start mb-4">
                         <CreditCard className="h-5 w-5 text-pick-green mt-0.5 mr-2 shrink-0" />
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          All payments are secure and encrypted. You'll pay when you pick up your order.
+                          All payments are secure and encrypted. {!isDelivery && "You'll pay when you pick up your order."}
                         </p>
                       </div>
                     </div>
@@ -242,25 +307,31 @@ const CheckoutPage = () => {
               <div className="space-y-2">
                 <div className="flex justify-between text-gray-600 dark:text-gray-400">
                   <span>Subtotal</span>
-                  <span>${getTotalPrice().toFixed(2)}</span>
+                  <span>${totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600 dark:text-gray-400">
-                  <span>Pickup Fee</span>
-                  <span>$0.00</span>
+                  <span>{isDelivery ? "Delivery Fee" : "Pickup Fee"}</span>
+                  <span>${deliveryCharge.toFixed(2)}</span>
                 </div>
                 <Separator className="my-2" />
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>${getTotalPrice().toFixed(2)}</span>
+                  <span>${finalTotal.toFixed(2)}</span>
                 </div>
               </div>
               
               <div className="mt-6 bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
                 <div className="flex">
                   <Check className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 mr-2 shrink-0" />
-                  <p className="text-sm text-green-800 dark:text-green-400">
-                    Self-pickup means no delivery fees! Collect your order directly from {shop?.name}.
-                  </p>
+                  {isDelivery ? (
+                    <p className="text-sm text-green-800 dark:text-green-400">
+                      Your order will be delivered to your address for a ${deliveryCharge.toFixed(2)} delivery fee.
+                    </p>
+                  ) : (
+                    <p className="text-sm text-green-800 dark:text-green-400">
+                      Self-pickup means no delivery fees! Collect your order directly from {shop?.name}.
+                    </p>
+                  )}
                 </div>
               </div>
             </CardContent>

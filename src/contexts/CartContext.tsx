@@ -20,6 +20,7 @@ export interface ShopInfo {
   rating: number;
   type: string;
   selfPickupOnly: boolean;
+  deliveryCharge?: number;
 }
 
 interface CartItem {
@@ -30,12 +31,15 @@ interface CartItem {
 interface CartContextType {
   items: CartItem[];
   shop: ShopInfo | null;
+  isDelivery: boolean;
+  setIsDelivery: (isDelivery: boolean) => void;
   addItem: (product: Product, shop: ShopInfo) => void;
   removeItem: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   getTotalPrice: () => number;
   getTotalItems: () => number;
+  getDeliveryCharge: () => number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -43,6 +47,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [shop, setShop] = useState<ShopInfo | null>(null);
+  const [isDelivery, setIsDelivery] = useState(false);
 
   const addItem = (product: Product, shopInfo: ShopInfo) => {
     if (shop && shop.id !== shopInfo.id) {
@@ -90,6 +95,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     // If cart is empty after removing, reset shop as well
     if (items.length === 1) {
       setShop(null);
+      setIsDelivery(false);
     }
   };
 
@@ -109,6 +115,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const clearCart = () => {
     setItems([]);
     setShop(null);
+    setIsDelivery(false);
     toast.info("Cart cleared");
   };
 
@@ -122,18 +129,28 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const getTotalItems = () => {
     return items.reduce((total, item) => total + item.quantity, 0);
   };
+  
+  const getDeliveryCharge = () => {
+    if (!isDelivery || !shop || shop.selfPickupOnly) {
+      return 0;
+    }
+    return shop.deliveryCharge || 0;
+  };
 
   return (
     <CartContext.Provider
       value={{
         items,
         shop,
+        isDelivery,
+        setIsDelivery,
         addItem,
         removeItem,
         updateQuantity,
         clearCart,
         getTotalPrice,
         getTotalItems,
+        getDeliveryCharge,
       }}
     >
       {children}
