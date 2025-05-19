@@ -27,9 +27,10 @@ export const generateProducts = (shopId: string, count: number = 20): Product[] 
   const categories = ["Fruits", "Vegetables", "Dairy", "Bakery", "Beverages"];
   const productImages = {
     Fruits: [
-      "https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&q=80",
+      "https://hips.hearstapps.com/hmg-prod/images/apples-at-farmers-market-royalty-free-image-1627321463.jpg?crop=1xw:0.94466xh;center,top&resize=1200:*",
+      "https://media.istockphoto.com/id/174262076/photo/strawberries.jpg?s=612x612&w=0&k=20&c=PWW0-LGwwd-a2a6O3sbEgSybseEnY4N8SauR0KSR5ls=",
+      "https://c.ndtvimg.com/2023-05/3ph40r2_mango_625x300_02_May_23.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=886",
+      "https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2018/08/bananas-1354785_1920.jpg",
     ],
     Vegetables: [
       "https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&q=80",
@@ -59,6 +60,7 @@ export const generateProducts = (shopId: string, count: number = 20): Product[] 
     Dairy: ["Milk", "Cheese", "Yogurt", "Butter", "Cream", "Ice Cream", "Cottage Cheese"],
     Bakery: ["Bread", "Muffins", "Croissants", "Bagels", "Donuts", "Cookies", "Cake"],
     Beverages: ["Water", "Juice", "Soda", "Coffee", "Tea", "Energy Drink", "Smoothie"],
+    Biscuits: ["choco","butter"],
   };
 
   return Array.from({ length: count }, (_, i) => {

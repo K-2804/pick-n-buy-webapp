@@ -94,14 +94,14 @@ const ShopDetailPage = () => {
               <MapPin className="h-5 w-5 text-pick-green mr-3" />
               <div>
                 <h3 className="text-sm font-semibold">Location</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">123 Market St, City</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">123 Market St, salem</p>
               </div>
             </div>
             <div className="flex items-center p-4 gradient-card rounded-lg">
               <Phone className="h-5 w-5 text-pick-green mr-3" />
               <div>
                 <h3 className="text-sm font-semibold">Contact</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">(555) 123-4567</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">04652 272282</p>
               </div>
             </div>
             <div className="flex items-center p-4 gradient-card rounded-lg">

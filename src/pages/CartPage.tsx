@@ -105,15 +105,15 @@ const CartPage = () => {
                         {item.product.discountedPrice ? (
                           <div className="flex flex-col items-end">
                             <span className="text-lg font-semibold text-pick-green">
-                              ${item.product.discountedPrice.toFixed(2)}
+                              ₹{item.product.discountedPrice.toFixed(2)}
                             </span>
                             <span className="text-sm text-gray-500 line-through">
-                              ${item.product.price.toFixed(2)}
+                              ₹{item.product.price.toFixed(2)}
                             </span>
                           </div>
                         ) : (
                           <span className="text-lg font-semibold">
-                            ${item.product.price.toFixed(2)}
+                            ₹{item.product.price.toFixed(2)}
                           </span>
                         )}
                       </div>
@@ -164,18 +164,18 @@ const CartPage = () => {
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-gray-600 dark:text-gray-400">
                   <span>Subtotal</span>
-                  <span>${getTotalPrice().toFixed(2)}</span>
+                  <span>₹{getTotalPrice().toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600 dark:text-gray-400">
                   <span>Pickup Fee</span>
-                  <span>$0.00</span>
+                  <span>₹0.00</span>
                 </div>
               </div>
               
               <div className="border-t border-gray-200 dark:border-gray-800 pt-4 mb-6">
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>${getTotalPrice().toFixed(2)}</span>
+                  <span>₹{getTotalPrice().toFixed(2)}</span>
                 </div>
               </div>
             </CardContent>

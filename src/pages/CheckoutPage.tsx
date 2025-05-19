@@ -167,7 +167,7 @@ const CheckoutPage = () => {
                           className="flex items-center cursor-pointer py-2"
                         >
                           <Truck className="h-4 w-4 mr-2" />
-                          Home Delivery (${shop?.deliveryCharge?.toFixed(2)})
+                          Home Delivery (₹{shop?.deliveryCharge?.toFixed(2)})
                         </Label>
                       </div>
                     </RadioGroup>
@@ -290,11 +290,11 @@ const CheckoutPage = () => {
                     </div>
                     <div className="text-right">
                       <p className="font-medium">
-                        ${((item.product.discountedPrice || item.product.price) * item.quantity).toFixed(2)}
+                        ₹{((item.product.discountedPrice || item.product.price) * item.quantity).toFixed(2)}
                       </p>
                       {item.product.discountedPrice && (
                         <p className="text-xs text-gray-500 line-through">
-                          ${(item.product.price * item.quantity).toFixed(2)}
+                          ₹{(item.product.price * item.quantity).toFixed(2)}
                         </p>
                       )}
                     </div>
@@ -307,16 +307,16 @@ const CheckoutPage = () => {
               <div className="space-y-2">
                 <div className="flex justify-between text-gray-600 dark:text-gray-400">
                   <span>Subtotal</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>₹{totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600 dark:text-gray-400">
                   <span>{isDelivery ? "Delivery Fee" : "Pickup Fee"}</span>
-                  <span>${deliveryCharge.toFixed(2)}</span>
+                  <span>₹{deliveryCharge.toFixed(2)}</span>
                 </div>
                 <Separator className="my-2" />
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>${finalTotal.toFixed(2)}</span>
+                  <span>₹{finalTotal.toFixed(2)}</span>
                 </div>
               </div>
               
@@ -325,7 +325,7 @@ const CheckoutPage = () => {
                   <Check className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 mr-2 shrink-0" />
                   {isDelivery ? (
                     <p className="text-sm text-green-800 dark:text-green-400">
-                      Your order will be delivered to your address for a ${deliveryCharge.toFixed(2)} delivery fee.
+                      Your order will be delivered to your address for a ₹{deliveryCharge.toFixed(2)} delivery fee.
                     </p>
                   ) : (
                     <p className="text-sm text-green-800 dark:text-green-400">
