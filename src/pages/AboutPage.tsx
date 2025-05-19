@@ -10,7 +10,7 @@ const AboutPage = () => {
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
             About <span className="text-pick-green">Pick</span>
             <span className="text-gray-500">-n-</span>
-            <span className="text-pick-orange">Pay</span>
+            <span className="text-pick-orange">Buy</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400">
             Connecting you with the best local shops in your neighborhood
@@ -32,10 +32,10 @@ const AboutPage = () => {
           </div>
           <CardContent className="p-6">
             <p className="text-lg leading-relaxed mb-6">
-              At Pick-n-Pay, we believe in strengthening local economies by connecting shoppers with neighborhood stores. Our mission is to make shopping from local businesses as convenient as possible while eliminating delivery fees through our innovative self-pickup model.
+              At Pick-n-Buy, we believe in strengthening local economies by connecting shoppers with neighborhood stores. Our mission is to make shopping from local businesses as convenient as possible while eliminating delivery fees through our innovative self-pickup model.
             </p>
             <p className="text-lg leading-relaxed">
-              Pick-n-Pay has quickly grown to become a trusted platform for both shoppers and local store owners. We're passionate about providing fresh, quality products while supporting the businesses that make our communities special.
+              Pick-n-Buy has quickly grown to become a trusted platform for both shoppers and local store owners. We're passionate about providing fresh, quality products while supporting the businesses that make our communities special.
             </p>
           </CardContent>
         </Card>

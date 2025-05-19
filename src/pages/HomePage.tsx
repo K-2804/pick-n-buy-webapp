@@ -73,7 +73,7 @@ const HomePage = () => {
             <span className="text-pick-green"> Rewards</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Discover amazing deals and earn rewards when you shop with Pick-n-Pay
+            Discover amazing deals and earn rewards when you shop with Pick-n-Buy
           </p>
         </div>
 
@@ -86,7 +86,7 @@ const HomePage = () => {
               </div>
               <h3 className="text-2xl font-display font-bold mb-2">First Order 20% Off</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                New to Pick-n-Pay? Get 20% off your first order with code <span className="font-semibold">WELCOME20</span>
+                New to Pick-n-Buy? Get 20% off your first order with code <span className="font-semibold">WELCOME20</span>
               </p>
               <div className="flex justify-between items-center">
                 <div className="text-sm font-medium text-pick-orange">Valid until 31 Dec 2025</div>
@@ -133,7 +133,7 @@ const HomePage = () => {
       {/* How It Works Section */}
       <section className="py-12 md:py-20">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">How Pick-n-Pay Works</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">How Pick-n-Buy Works</h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Shopping from local stores has never been easier. Pick-n-Pay connects you with shops in your neighborhood.
           </p>
@@ -175,7 +175,7 @@ const HomePage = () => {
       {/* Featured Section */}
       <section className="py-12 md:py-20 bg-gradient-to-br from-pick-green/5 to-pick-purple/5 rounded-3xl my-12">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Why Choose Pick-n-Pay?</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Why Choose Pick-n-Buy?</h2>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 animate-fade-in">

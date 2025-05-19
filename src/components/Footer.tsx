@@ -37,7 +37,7 @@ const Footer = () => {
             <div className="font-display text-2xl font-bold mb-4">
               <span className="text-pick-green">Pick</span>
               <span className="text-gray-500">-n-</span>
-              <span className="text-pick-orange">Pay</span>
+              <span className="text-pick-orange">Buy</span>
             </div>
             <p className="text-gray-600 dark:text-gray-400 max-w-md mb-6">
               Shop local groceries online and pick up your order directly from 
@@ -142,7 +142,7 @@ const Footer = () => {
         
         {/* Copyright Section */}
         <div className="py-6 border-t border-gray-200 dark:border-gray-800 text-center text-gray-600 dark:text-gray-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} Pick-n-Pay. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Pick-n-Buy. All rights reserved.</p>
           <div className="mt-2 flex justify-center space-x-4">
             <a href="#" className="hover:text-pick-green">Terms</a>
             <a href="#" className="hover:text-pick-green">Privacy</a>

@@ -40,7 +40,7 @@ const Header = () => {
             <div className="font-display text-2xl font-bold">
               <span className="text-pick-green">Pick</span>
               <span className="text-gray-500">-n-</span>
-              <span className="text-pick-orange">Pay</span>
+              <span className="text-pick-orange">Buy</span>
             </div>
           </Link>
 
