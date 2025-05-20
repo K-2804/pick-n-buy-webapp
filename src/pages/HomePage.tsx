@@ -102,7 +102,7 @@ const HomePage = () => {
               </div>
               <h3 className="text-2xl font-display font-bold mb-2">Reward Tokens</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Earn 1 token for every $10 spent. Redeem 10 tokens for $5 off your next order.
+                Earn 1 token for every ₹10 spent. Redeem 10 tokens for ₹5 off your next order.
               </p>
               <div className="flex justify-between items-center">
                 <div className="text-sm font-medium text-pick-green">Collect & Save</div>
@@ -119,7 +119,7 @@ const HomePage = () => {
               </div>
               <h3 className="text-2xl font-display font-bold mb-2">Free Delivery</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Get free delivery on orders over $50 from participating shops with delivery service.
+                Get free delivery on orders over ₹50 from participating shops with delivery service.
               </p>
               <div className="flex justify-between items-center">
                 <div className="text-sm font-medium text-pick-purple">Select Shops Only</div>
