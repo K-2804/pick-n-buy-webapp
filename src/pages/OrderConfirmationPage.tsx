@@ -12,24 +12,33 @@ const OrderConfirmationPage = () => {
   const [orderStatus, setOrderStatus] = useState("Received");
 
   // Generate a random order ID
-  const orderId = `PN-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+  const [orderId] = useState(() => {
+  return `PN-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+});
+
 
   useEffect(() => {
-    // Simulate order progress
-    const timer = setTimeout(() => {
-      setOrderStatus("Processing");
-      setProgress(33);
-      
-      const timer2 = setTimeout(() => {
-        setOrderStatus("Ready for pickup");
-        setProgress(100);
-      }, 3000);
-      
-      return () => clearTimeout(timer2);
-    }, 3000);
-    
-    return () => clearTimeout(timer);
-  }, []);
+  // Stage 1: "Order Received"
+  setOrderStatus("Order Received");
+  setProgress(10); // Start at 10%
+
+  const timer1 = setTimeout(() => {
+    // Stage 2: "Processing"
+    setOrderStatus("Processing");
+    setProgress(50); // Halfway
+
+    const timer2 = setTimeout(() => {
+      // Stage 3: "Ready for Pickup"
+      setOrderStatus("Ready for Pickup");
+      setProgress(100); // Complete
+    }, 7000); // 3 seconds after processing
+
+    return () => clearTimeout(timer2);
+  }, 10000); // 3 seconds after order received
+
+  return () => clearTimeout(timer1);
+}, []);
+
 
   return (
     <div className="container px-4 md:px-6 mx-auto py-12 animate-fade-in">
@@ -85,19 +94,19 @@ const OrderConfirmationPage = () => {
               <div>
                 <h3 className="font-medium text-gray-700 dark:text-gray-300 mb-1">Pickup Location</h3>
                 <p className="text-gray-600 dark:text-gray-400">Green Market Grocers</p>
-                <p className="text-gray-600 dark:text-gray-400">123 Market Street, San Francisco</p>
-                <p className="text-gray-600 dark:text-gray-400">CA 94103</p>
+                <p className="text-gray-600 dark:text-gray-400">123 Market Street, madurai</p>
+                <p className="text-gray-600 dark:text-gray-400">625001</p>
               </div>
               <div>
                 <h3 className="font-medium text-gray-700 dark:text-gray-300 mb-1">Pickup Time</h3>
-                <p className="text-gray-600 dark:text-gray-400">Your order will be ready in approximately 30 minutes.</p>
+                <p className="text-gray-600 dark:text-gray-400">Your order will be ready in approximately 10 to 20 minutes.</p>
                 <p className="text-gray-600 dark:text-gray-400">Store hours: 9:00 AM - 9:00 PM</p>
               </div>
             </div>
             
             <div className="mt-6 bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg">
               <p className="text-sm text-yellow-800 dark:text-yellow-400">
-                <span className="font-medium">Important:</span> Please bring your order ID and a valid ID when picking up your order.
+                <span className="font-medium">Important:</span> Please bring your order ID when picking up your order.
               </p>
             </div>
           </CardContent>
