@@ -56,7 +56,7 @@ const HomePage = () => {
             
             <div className="relative rounded-xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80" 
+                src="https://www.philomathresearch.com/blog/wp-content/uploads/2023/02/online-shopping-1024x683.jpg" 
                 alt="Local grocery shopping" 
                 className="w-full h-auto rounded-xl"
               />
