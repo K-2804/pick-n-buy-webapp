@@ -65,7 +65,7 @@ export const generateProducts = (shopId: string, count: number = 20): Product[] 
 
   return Array.from({ length: count }, (_, i) => {
     const category = categories[i % categories.length];
-    const price = 2 + Math.random() * 8;
+    const price = 248 + Math.random() * 8;
     const isHotDeal = i % 5 === 0;
     const discountedPrice = isHotDeal ? price * 0.8 : undefined;
     
