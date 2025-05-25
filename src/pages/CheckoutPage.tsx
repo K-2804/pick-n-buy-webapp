@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ import { paymentMethods } from "../data/mockData";
 import { MapPin, CreditCard, Check, ArrowLeft, Truck, Package, Store } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
+import { firestore, collection, addDoc } from "@/lib/firebase";
 
 const CheckoutPage = () => {
   const { items, shop, getTotalPrice, clearCart, isDelivery, setIsDelivery, getDeliveryCharge } = useCart();
@@ -37,23 +39,57 @@ const CheckoutPage = () => {
     setIsDelivery(value === "delivery");
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Form validation
-    if (!customerInfo.name || !customerInfo.phone || !customerInfo.email || !customerInfo.address || !customerInfo.pincode) {
-      toast.error("Please fill in all required fields");
-      return;
-    }
-    
-    setIsSubmitting(true);
-    
-    // Simulate order submission
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  // Form validation
+  if (!customerInfo.name || !customerInfo.phone || !customerInfo.email || !customerInfo.address || !customerInfo.pincode) {
+    toast.error("Please fill in all required fields");
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  const latestOrder = {
+    customerName: customerInfo.name,
+    customerPhone: customerInfo.phone,
+    orderItems: items,
+    totalAmount: totalPrice,
+    createdAt: new Date().toISOString(),
+    status: 'pending',
+  };
+
+  try {
+    // Save order to Firestore
+    const docRef = await addDoc(collection(firestore, "orders"), latestOrder);
+    console.log("Order saved with ID:", docRef.id);
+
+    // Save to localStorage
+    localStorage.setItem('latestOrder', JSON.stringify(latestOrder));
+
+    // Navigate to order summary page with necessary state
+    navigate("/order-summary", {
+      state: {
+        items,
+        customerName: customerInfo.name,
+        customerPhone: customerInfo.phone,
+        paymentMethod,
+        totalPrice,
+      },
+    });
+
+    // Simulate order submission delay, clear cart and navigate confirmation
     setTimeout(() => {
       clearCart();
       navigate("/order-confirmation");
     }, 1500);
-  };
+  } catch (error) {
+    console.error("Error saving order:", error);
+    toast.error("Failed to place order. Please try again.");
+    setIsSubmitting(false);
+  }
+};
+
   
   // Redirect if cart is empty
   if (items.length === 0) {
