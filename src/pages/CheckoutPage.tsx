@@ -53,7 +53,12 @@ const handleSubmit = async (e: React.FormEvent) => {
   const latestOrder = {
     customerName: customerInfo.name,
     customerPhone: customerInfo.phone,
-    orderItems: items,
+    orderItems: items.map((item) => ({
+  productId: item.product.id,
+  productName: item.product.name,
+  productPrice: item.product.price,
+  quantity: item.quantity,
+})),
     totalAmount: totalPrice,
     createdAt: new Date().toISOString(),
     status: 'pending',
