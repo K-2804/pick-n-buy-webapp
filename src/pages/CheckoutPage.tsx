@@ -56,8 +56,9 @@ const handleSubmit = async (e: React.FormEvent) => {
     orderItems: items.map((item) => ({
   productId: item.product.id,
   productName: item.product.name,
-  productPrice: item.product.price,
+  price: item.product.price,
   quantity: item.quantity,
+  totalPrice: item.product.price * item.quantity,
 })),
     totalAmount: totalPrice,
     createdAt: new Date().toISOString(),
