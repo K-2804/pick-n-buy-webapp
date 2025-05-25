@@ -49,22 +49,26 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
 
   setIsSubmitting(true);
+  
+  const totalPrice = items.reduce((sum, item) => {
+  return sum + item.product.price * item.quantity;
+}, 0);
 
-  const latestOrder = {
-    customerName: customerInfo.name,
-    customerPhone: customerInfo.phone,
-    orderItems: items.map((item) => ({
-  productId: item.product.id,
-  productName: item.product.name,
-  price: item.product.price,
-  quantity: item.quantity,
-  totalPrice: item.product.price * item.quantity,
-})),
-    totalAmount: totalPrice,
-    createdAt: new Date().toISOString(),
-    status: 'pending',
-  };
-
+const latestOrder = {
+  customerName: customerInfo.name,
+  customerPhone: customerInfo.phone,
+  orderItems: items.map((item) => ({
+    productId: item.product.id,
+    productName: item.product.name,
+    price: item.product.price,
+    quantity: item.quantity,
+    totalPrice: item.product.price * item.quantity,
+  })),
+  totalAmount: totalPrice,
+  createdAt: new Date().toISOString(),
+  status: 'pending',
+};
+ 
   try {
     // Save order to Firestore
     const docRef = await addDoc(collection(firestore, "orders"), latestOrder);
