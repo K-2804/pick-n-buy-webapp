@@ -6,6 +6,7 @@ A smart web application that allows users to discover nearby shops, place orders
 - ReactJS
 - TypeScript
 - JavaScript
+- Firestore Database
 - CSS
 
 ## 🌟 Features
