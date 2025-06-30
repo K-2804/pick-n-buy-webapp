@@ -1,12 +1,23 @@
-# PICK-n-BUY
+# Pick-n-Buy 🛒
 
-## What technologies are used for this project?
+A smart web application that allows users to discover nearby shops, place orders, and track them in real time.
 
-This project is built with:
-
-- Vite
+## 🔧 Tech Stack
+- ReactJS
 - TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- JavaScript
+- CSS
+
+## 🌟 Features
+- Local shop listing and search
+- Smart ordering system
+- Live order tracking interface
+- Responsive and mobile-friendly UI
+
+## 🚀 How to Run Locally
+```bash
+git clone repo link
+cd pick-n-buy
+npm install
+npm run dev
 
