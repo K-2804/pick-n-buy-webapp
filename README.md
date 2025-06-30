@@ -15,6 +15,11 @@ A smart web application that allows users to discover nearby shops, place orders
 - Live order tracking interface
 - Responsive and mobile-friendly UI
 
+## 📌 Use Case Examples
+- Grocery and local product delivery app
+- College/hostel food ordering system
+- Hyperlocal delivery platform
+  
 ## 🚀 How to Run Locally
 ```bash
 git clone repo link
