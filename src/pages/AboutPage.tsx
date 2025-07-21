@@ -75,7 +75,7 @@ const AboutPage = () => {
         <div className="text-center mb-8">
           <h2 className="text-3xl font-display font-bold mb-2">Join Our Community</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            Whether you're a shopper or a local business owner, Pick-n-Pay welcomes you.
+            Whether you're a shopper or a local business owner, Pick-n-Buy welcomes you.
           </p>
         </div>
       </div>
