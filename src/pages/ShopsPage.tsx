@@ -53,4 +53,5 @@ const ShopsPage = () => {
   );
 };
 
+
 export default ShopsPage;
