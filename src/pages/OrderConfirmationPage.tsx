@@ -11,7 +11,6 @@ const OrderConfirmationPage = () => {
   const [progress, setProgress] = useState(0);
   const [orderStatus, setOrderStatus] = useState("Received");
 
-  // Generate a random order ID
   const [orderId] = useState(() => {
   return `PN-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
 });
@@ -125,5 +124,6 @@ const OrderConfirmationPage = () => {
     </div>
   );
 };
+
 
 export default OrderConfirmationPage;
