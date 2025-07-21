@@ -19,7 +19,7 @@ const OrderConfirmationPage = () => {
   useEffect(() => {
   // Stage 1: "Order Received"
   setOrderStatus("Order Received");
-  setProgress(10); // Start at 10%
+  setProgress(10); 
 
   const timer1 = setTimeout(() => {
     // Stage 2: "Processing"
