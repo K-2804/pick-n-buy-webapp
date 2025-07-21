@@ -25,6 +25,7 @@ export const generateShops = (count: number = 5): ShopInfo[] => {
 // Generate mock products
 export const generateProducts = (shopId: string, count: number = 20): Product[] => {
   const categories = ["Fruits", "Vegetables", "Dairy", "Bakery", "Beverages"];
+
   const productImages = {
     Fruits: [
       "https://hips.hearstapps.com/hmg-prod/images/apples-at-farmers-market-royalty-free-image-1627321463.jpg?crop=1xw:0.94466xh;center,top&resize=1200:*",
@@ -55,32 +56,41 @@ export const generateProducts = (shopId: string, count: number = 20): Product[] 
   };
 
   const productNames = {
-    Fruits: ["Apples", "Bananas", "Oranges", "Strawberries", "Grapes", "Mangoes", "Kiwi"],
-    Vegetables: ["Carrots", "Broccoli", "Spinach", "Potatoes", "Tomatoes", "Cucumbers", "Onions"],
-    Dairy: ["Milk", "Cheese", "Yogurt", "Butter", "Cream", "Ice Cream", "Cottage Cheese"],
-    Bakery: ["Bread", "Muffins", "Croissants", "Bagels", "Donuts", "Cookies", "Cake"],
-    Beverages: ["Water", "Juice", "Soda", "Coffee", "Tea", "Energy Drink", "Smoothie"],
-    Biscuits: ["choco","butter"],
+    Fruits: ["Apples", "Strawberries", "Mangoes", "Bananas"],
+    Vegetables: ["Carrots", "Broccoli", "Spinach"],
+    Dairy: ["Milk", "Cheese", "Yogurt"],
+    Bakery: ["Bread", "Muffins", "Croissants"],
+    Beverages: ["Water", "Juice", "Soda"],
   };
 
-  return Array.from({ length: count }, (_, i) => {
-    const category = categories[i % categories.length];
-    const price = 248 + Math.random() * 8;
-    const isHotDeal = i % 5 === 0;
-    const discountedPrice = isHotDeal ? price * 0.8 : undefined;
-    
-    return {
-      id: `${shopId}-product-${i + 1}`,
-      name: `${productNames[category as keyof typeof productNames][i % 7]}`,
-      price: parseFloat(price.toFixed(2)),
-      discountedPrice: discountedPrice ? parseFloat(discountedPrice.toFixed(2)) : undefined,
-      image: productImages[category as keyof typeof productImages][i % 3],
-      category,
-      isHotDeal,
-      inStock: i % 7 !== 0,
-    };
-  });
+  const products: Product[] = [];
+
+  for (const category of categories) {
+    const names = productNames[category as keyof typeof productNames];
+    const images = productImages[category as keyof typeof productImages];
+
+    names.forEach((name, idx) => {
+      const price = 248 + Math.random() * 8;
+      const isHotDeal = idx % 2 === 0;
+      const discountedPrice = isHotDeal ? price * 0.8 : undefined;
+
+      products.push({
+        id: `${shopId}-${category}-${name}`,
+        name,
+        image: images[idx % images.length], // if fewer images than names, it wraps around
+        category,
+        price: parseFloat(price.toFixed(2)),
+        discountedPrice: discountedPrice ? parseFloat(discountedPrice.toFixed(2)) : undefined,
+        isHotDeal,
+        inStock: idx % 4 !== 0,
+      });
+    });
+  }
+
+  // If total exceeds `count`, trim it
+  return products.slice(0, count);
 };
+
 
 // Mock shops for different PIN codes
 const shopsByPincode: Record<string, ShopInfo[]> = {};
