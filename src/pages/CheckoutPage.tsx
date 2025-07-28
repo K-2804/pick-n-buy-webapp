@@ -75,7 +75,6 @@ const latestOrder = {
 
     localStorage.setItem('latestOrder', JSON.stringify(latestOrder));
 
-    // Navigate to order summary page with necessary state
     navigate("/order-summary", {
       state: {
         items,
