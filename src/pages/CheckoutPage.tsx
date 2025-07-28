@@ -85,7 +85,7 @@ const latestOrder = {
       },
     });
 
-    // Simulate order submission delay, clear cart and navigate confirmation
+    // <= Simulate order submission delay, clear cart and navigate confirmation =>
     setTimeout(() => {
       clearCart();
       navigate("/order-confirmation");
