@@ -85,7 +85,6 @@ export const generateProducts = (shopId: string, count: number = 20): Product[] 
     });
   }
 
-  // If total exceeds `count`, trim it
   return products.slice(0, count);
 };
 
