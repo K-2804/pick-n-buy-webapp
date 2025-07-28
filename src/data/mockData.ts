@@ -1,7 +1,6 @@
 
 import { Product, ShopInfo } from "../contexts/CartContext";
 
-// Generate mock shop data
 export const generateShops = (count: number = 5): ShopInfo[] => {
   const shopTypes = ["Grocery", "Supermarket", "Convenience Store", "Organic Market", "Fresh Produce"];
   const shopImages = [
