@@ -110,10 +110,8 @@ export const getShopById = (shopId: string): ShopInfo | undefined => {
   return undefined;
 };
 
-// Cache for products by shop ID
 const productsByShopId: Record<string, Product[]> = {};
 
-// Function to get products by shop ID
 export const getProductsByShopId = (shopId: string): Product[] => {
   if (!productsByShopId[shopId]) {
     productsByShopId[shopId] = generateProducts(shopId);
@@ -121,7 +119,6 @@ export const getProductsByShopId = (shopId: string): Product[] => {
   return productsByShopId[shopId];
 };
 
-// Function to get products by category for a specific shop
 export const getProductsByCategory = (shopId: string): Record<string, Product[]> => {
   const products = getProductsByShopId(shopId);
   return products.reduce((acc, product) => {
@@ -133,7 +130,6 @@ export const getProductsByCategory = (shopId: string): Record<string, Product[]>
   }, {} as Record<string, Product[]>);
 };
 
-// Payment methods
 export const paymentMethods = [
   { id: "gpay", name: "Google Pay" },
   { id: "card", name: "Credit/Debit Card" },
