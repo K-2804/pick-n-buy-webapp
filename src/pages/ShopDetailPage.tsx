@@ -15,7 +15,7 @@ const ShopDetailPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call
+    // <-- Simulate API call, done here -->
     setLoading(true);
     setTimeout(() => {
       const shopData = getShopById(shopId);
