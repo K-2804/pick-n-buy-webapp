@@ -90,13 +90,11 @@ export const generateProducts = (shopId: string, count: number = 20): Product[] 
 
 const shopsByPincode: Record<string, ShopInfo[]> = {};
 
-// Generate shops for some example PIN codes
 const examplePincodes = ["10001", "90210", "60601", "75001", "20001"];
 examplePincodes.forEach((pincode) => {
   shopsByPincode[pincode] = generateShops();
 });
 
-// Function to get shops by pincode - returns 5 shops for any pincode
 export const getShopsByPincode = (pincode: string): ShopInfo[] => {
   // If we don't have pre-generated shops for this pincode, generate them now
   if (!shopsByPincode[pincode]) {
