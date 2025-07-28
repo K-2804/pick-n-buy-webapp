@@ -26,11 +26,11 @@ const OrderConfirmationPage = () => {
 
     const timer2 = setTimeout(() => {
       setOrderStatus("Ready for Pickup");
-      setProgress(100); // Complete
-    }, 7000); // 3 seconds after processing
+      setProgress(100); 
+    }, 7000); 
 
     return () => clearTimeout(timer2);
-  }, 10000); // 3 seconds after order received
+  }, 10000); 
 
   return () => clearTimeout(timer1);
 }, []);
