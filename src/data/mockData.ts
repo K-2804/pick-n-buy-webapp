@@ -76,7 +76,7 @@ export const generateProducts = (shopId: string, count: number = 20): Product[] 
       products.push({
         id: `${shopId}-${category}-${name}`,
         name,
-        image: images[idx % images.length], // if fewer images than names, it wraps around
+        image: images[idx % images.length], 
         category,
         price: parseFloat(price.toFixed(2)),
         discountedPrice: discountedPrice ? parseFloat(discountedPrice.toFixed(2)) : undefined,
