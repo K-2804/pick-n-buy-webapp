@@ -70,7 +70,6 @@ const latestOrder = {
 };
  
   try {
-    // Save order to Firestore
     const docRef = await addDoc(collection(firestore, "orders"), latestOrder);
     console.log("Order saved with ID:", docRef.id);
 
