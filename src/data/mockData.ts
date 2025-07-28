@@ -96,14 +96,12 @@ examplePincodes.forEach((pincode) => {
 });
 
 export const getShopsByPincode = (pincode: string): ShopInfo[] => {
-  // If we don't have pre-generated shops for this pincode, generate them now
   if (!shopsByPincode[pincode]) {
     shopsByPincode[pincode] = generateShops();
   }
   return shopsByPincode[pincode];
 };
 
-// Function to get shop by ID
 export const getShopById = (shopId: string): ShopInfo | undefined => {
   for (const shops of Object.values(shopsByPincode)) {
     const shop = shops.find((s) => s.id === shopId);
