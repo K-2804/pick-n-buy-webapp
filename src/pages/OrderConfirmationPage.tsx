@@ -17,17 +17,14 @@ const OrderConfirmationPage = () => {
 
 
   useEffect(() => {
-  // Stage 1: "Order Received"
   setOrderStatus("Order Received");
   setProgress(10); 
 
   const timer1 = setTimeout(() => {
-    // Stage 2: "Processing"
     setOrderStatus("Processing");
-    setProgress(50); // Halfway
+    setProgress(50); 
 
     const timer2 = setTimeout(() => {
-      // Stage 3: "Ready for Pickup"
       setOrderStatus("Ready for Pickup");
       setProgress(100); // Complete
     }, 7000); // 3 seconds after processing
