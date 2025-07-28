@@ -42,7 +42,6 @@ const CheckoutPage = () => {
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
-  // Form validation
   
   if (!customerInfo.name || !customerInfo.phone || !customerInfo.email || !customerInfo.address || !customerInfo.pincode) {
     toast.error("Please fill in all required fields");
