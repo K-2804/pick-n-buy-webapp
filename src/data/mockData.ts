@@ -22,7 +22,6 @@ export const generateShops = (count: number = 5): ShopInfo[] => {
   }));
 };
 
-// Generate mock products
 export const generateProducts = (shopId: string, count: number = 20): Product[] => {
   const categories = ["Fruits", "Vegetables", "Dairy", "Bakery", "Beverages"];
 
