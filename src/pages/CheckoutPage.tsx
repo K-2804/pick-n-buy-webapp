@@ -73,7 +73,6 @@ const latestOrder = {
     const docRef = await addDoc(collection(firestore, "orders"), latestOrder);
     console.log("Order saved with ID:", docRef.id);
 
-    // Save to localStorage
     localStorage.setItem('latestOrder', JSON.stringify(latestOrder));
 
     // Navigate to order summary page with necessary state
