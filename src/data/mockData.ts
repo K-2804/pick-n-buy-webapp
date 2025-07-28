@@ -88,8 +88,6 @@ export const generateProducts = (shopId: string, count: number = 20): Product[] 
   return products.slice(0, count);
 };
 
-
-// Mock shops for different PIN codes
 const shopsByPincode: Record<string, ShopInfo[]> = {};
 
 // Generate shops for some example PIN codes
