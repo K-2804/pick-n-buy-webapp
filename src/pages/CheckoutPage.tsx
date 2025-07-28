@@ -98,7 +98,6 @@ const latestOrder = {
 };
 
   
-  // Redirect if cart is empty
   if (items.length === 0) {
     navigate("/");
     return null;
